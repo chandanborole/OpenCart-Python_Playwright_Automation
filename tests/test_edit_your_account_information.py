@@ -22,7 +22,7 @@ def test_edit_your_account_information(page:Page):
 
     # Update Details
     edit_account_info.set_firstname(config_data.edit_firstname)
-    edit_account_info.set_telephone(config_data.edit_lastname)
+    edit_account_info.set_lastname(config_data.edit_lastname)
     edit_account_info.set_telephone(config_data.edit_telephone)
     edit_account_info.click_continue_button()
 
