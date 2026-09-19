@@ -23,10 +23,10 @@ class Login:
     def click_login_link(self):
         self.login_link_login.click()
 
-    def set_email_address(self , email_address):
+    def user_email_address(self , email_address):
         self.login_textbox_email_address.fill(email_address)
 
-    def set_password(self , password):
+    def user_password(self , password):
         self.login_textbox_password.fill(password)
 
     def click_login_button(self):
