@@ -17,6 +17,6 @@ def test_login(page:Page):
     login_page.click_login_link()
 
     # Fill User ID / Password
-    login_page.set_email_address(config_data.email)
-    login_page.set_password(config_data.password)
+    login_page.user_email_address(config_data.email)
+    login_page.user_password(config_data.password)
     login_page.click_login_button()
