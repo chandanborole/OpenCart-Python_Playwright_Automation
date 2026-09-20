@@ -11,6 +11,7 @@ class Config:
     confirm_password = "QRX@Xa6kQTDDSi"
     telephone = "1234567890"
 
+    # Invalid Login
     invalid_email = "qaautomation123@gmail.com"
     invalid_password = "QRX@Xa6kQTDDSi123"
 
@@ -19,5 +20,5 @@ class Config:
     edit_lastname = "pythonplaywright"
     edit_telephone = "0987654321"
 
-    # Forgot Password
+    # Forgot Password Page
     email_get_by_label = "qaautomation@gmail.com"
