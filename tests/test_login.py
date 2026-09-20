@@ -2,8 +2,7 @@ from playwright.sync_api import Page
 from OpenCart.pageobject.login import Login
 from OpenCart.config import Config
 
-# To verify new user registration
-
+# To verify valid login
 def test_valid_login(page:Page):
 
     page.goto("https://tutorialsninja.com/demo/")
@@ -21,6 +20,7 @@ def test_valid_login(page:Page):
     login_page.user_password(config_data.password)
     login_page.click_login_button()
 
+# To verify invalid login
 def test_invalid_login(page:Page):
 
     page.goto("https://tutorialsninja.com/demo/")
