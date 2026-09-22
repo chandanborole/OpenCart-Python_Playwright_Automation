@@ -22,3 +22,12 @@ class Config:
 
     # Forgot Password Page
     email_get_by_label = "qaautomation@gmail.com"
+
+    # Modify Your Address Book Entries
+    modify_firstname = "python"
+    modify_lastname = "automation"
+    modify_address = "pycharm"
+    modify_city = "pytest"
+    modify_country = "India"
+    modify_region = "Maharashtra"
+
