@@ -4,11 +4,26 @@ from OpenCart.pageobject.homepage import HomePage
 from OpenCart.utilities.random_data_util import RandomDataGenerator
 from OpenCart.config import Config
 
-# To verify new user registration
+base_url = Config.url
 
-def test_new_user_registration(page:Page):
+def test_0001_to_validate_application_url(page:Page):
 
-    page.goto("https://tutorialsninja.com/demo/")
+    """
+    To validate - Application URL
+    """
+
+    # Browse URL
+    page.goto(base_url)
+
+
+def test_0002_new_user_registration_valid_inputs(page:Page):
+
+    """
+    To validate - New user registration with valid input
+    """
+
+    # Browse URL
+    page.goto(base_url)
 
     # Create Page Object
     home_page = HomePage(page)
@@ -28,7 +43,7 @@ def test_new_user_registration(page:Page):
     register_page.set_password(password)
     register_page.set_confirm_password(password)
 
-    # Accept Privacy Policy and Submit
+    # Accept Privacy Policy and Click Continue Button
     register_page.click_privacy_policy_checkbox()
     register_page.click_continue_button()
 
