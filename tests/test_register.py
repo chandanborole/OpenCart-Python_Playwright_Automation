@@ -56,7 +56,7 @@ def test_0003_new_user_registration_invalid_inputs(page:Page):
 
     """
     To validate - New user registration with invalid input
-    IMP - Current there is no validation on UI page - SKIP
+    IMP - Currently there is no validation on UI page - SKIP
 
     """
 
@@ -85,4 +85,4 @@ def test_0003_new_user_registration_invalid_inputs(page:Page):
 
     # Verify Account Creation Confirmation and Validation
     registration_success_message = register_page.registration_confirmation_success_message()
-    expect(registration_success_message).to_have_text("IMP - Current there is no validation on UI page - SKIP")
+    expect(registration_success_message).to_have_text("IMP - Currently there is no validation on UI page - SKIP")
