@@ -50,3 +50,39 @@ def test_0002_new_user_registration_valid_inputs(page:Page):
     # Verify Account Creation Confirmation and Validation
     registration_success_message = register_page.registration_confirmation_success_message()
     expect(registration_success_message).to_have_text("Your Account Has Been Created!")
+
+
+def test_0003_new_user_registration_invalid_inputs(page:Page):
+
+    """
+    To validate - New user registration with invalid input
+    IMP - Current there is no validation on UI page - SKIP
+
+    """
+
+    # Browse URL
+    page.goto(base_url)
+
+    # Create Page Object
+    home_page = HomePage(page)
+    register_page = Register(page)
+
+    # Navigate to registration page
+    home_page.click_myaccount()
+    home_page.click_register()
+
+    # Fill Registration Form
+    register_page.set_firstname(Config.invalid_register_first_name)
+    register_page.set_lastname(Config.invalid_register_last_name)
+    register_page.set_email(Config.invalid_register_email)
+    register_page.set_telephone(Config.invalid_register_telephone)
+    register_page.set_password(Config.invalid_register_password)
+    register_page.set_confirm_password(Config.invalid_register_confirm_password)
+
+    # Accept Privacy Policy and Submit
+    register_page.click_privacy_policy_checkbox()
+    register_page.click_continue_button()
+
+    # Verify Account Creation Confirmation and Validation
+    registration_success_message = register_page.registration_confirmation_success_message()
+    expect(registration_success_message).to_have_text("IMP - Current there is no validation on UI page - SKIP")
