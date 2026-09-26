@@ -17,12 +17,14 @@ class Register:
         self.register_textbox_telephone = self.page.locator("#input-telephone")
         self.register_textbox_password = self.page.locator("#input-password")
         self.register_textbox_confirm_password = self.page.locator("#input-confirm")
-        self.register_radio_click_subscribe = self.page.locator("input[name='newsletter'][value='1']")
+        self.register_radio_click_subscribe_yes = self.page.locator("input[name='newsletter'][value='1']")
+        self.register_radio_click_subscribe_no = self.page.locator("input[name='newsletter'][value='0']")
         self.register_checkbox_click_privacy_policy = self.page.locator("input[name='agree']")
         self.register_button_click_continue_button = self.page.locator("input[type='submit']")
         self.register_message_registration_success_message = self.page.locator("h1:has-text('Your Account Has Been Created!')")
+        self.register_message_different_confirm_password_warning_message = self.page.locator(".text-danger:has-text('Password confirmation does not match password!')")
 
-    # Action methods
+    # Action methods label:has-text('Yes')
     def set_firstname(self , firstname):
         self.register_textbox_firstname.fill(firstname)
 
@@ -41,8 +43,11 @@ class Register:
     def set_confirm_password(self , confirm_password):
         self.register_textbox_confirm_password.fill(confirm_password)
 
-    def click_subscribe(self):
-        self.register_radio_click_subscribe.click()
+    def click_subscribe_yes(self):
+        self.register_radio_click_subscribe_yes.click()
+
+    def click_subscribe_no(self):
+        self.register_radio_click_subscribe_no.click()
 
     def click_privacy_policy_checkbox(self):
         self.register_checkbox_click_privacy_policy.click()
@@ -52,3 +57,6 @@ class Register:
 
     def registration_confirmation_success_message(self):
         return self.register_message_registration_success_message
+
+    def different_confirm_password_warning_message(self):
+        return self.register_message_different_confirm_password_warning_message
