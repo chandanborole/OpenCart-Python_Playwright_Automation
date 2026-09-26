@@ -203,3 +203,78 @@ def test_0006_new_user_registration_register_with_different_confirm_password(pag
     # Verify warning message for confirm password mismatch
     different_confirm_password_warning_message = register_page.different_confirm_password_warning_message()
     expect(different_confirm_password_warning_message).to_have_text("Password confirmation does not match password!")
+
+
+def test_0007_new_user_registration_register_with_existing_details(page:Page):
+
+    """
+    To Validate - Register account using existing account details (ex - existing first name , last name , email address etc)
+    """
+
+    # Browse URL
+    page.goto(Config.base_url)
+
+    # Create Page Object
+    home_page = HomePage(page)
+    register_page = Register(page)
+
+    # Navigate to registration page
+    home_page.click_register()
+    home_page.click_myaccount()
+
+    # Fill Registration Form
+    register_page.set_firstname(Config.valid_register_first_name)
+    register_page.set_lastname(Config.valid_register_last_name)
+    register_page.set_email(Config.valid_register_email)
+    register_page.set_telephone(Config.valid_register_telephone)
+    register_page.set_password(Config.valid_register_password)
+    register_page.set_confirm_password(Config.valid_register_confirm_password)
+
+    # Select Newsletter Subscription as 'YES'
+    register_page.click_subscribe_yes()
+
+    # Accept Privacy Policy and Submit
+    register_page.click_privacy_policy_checkbox()
+    register_page.click_continue_button()
+
+    # Verify Account Creation Confirmation and Validation
+    register_with_existing_details_warning_message = register_page.register_with_existing_details_warning_message()
+    expect(register_with_existing_details_warning_message).to_have_text("Warning: E-Mail Address is already registered!")
+
+
+def test_0008_new_user_registration_with_password_and_confirm_password_field(page:Page):
+
+    """
+    To validate - Register account by not filling 'Password' field and by filling 'Confirm Password' field
+    """
+
+    # Browse URL
+    page.goto(Config.base_url)
+
+    # Create Page Object
+    home_page = HomePage(page)
+    register_page = Register(page)
+    ramdom_data = RandomDataGenerator()
+
+    # Navigate to registration page
+    home_page.click_register()
+    home_page.click_myaccount()
+
+    # Fill Registration Form
+    register_page.set_firstname(ramdom_data.get_first_name())
+    register_page.set_lastname(ramdom_data.get_last_name())
+    register_page.set_email(ramdom_data.get_email())
+    register_page.set_telephone(ramdom_data.get_phone_number())
+    register_page.set_password(Config.blank_password)
+    register_page.set_confirm_password(Config.valid_register_confirm_password)
+
+    # Select Newsletter Subscription as 'YES'
+    register_page.click_subscribe_yes()
+
+    # Accept Privacy Policy and Submit
+    register_page.click_privacy_policy_checkbox()
+    register_page.click_continue_button()
+
+    # Verify Account Creation Confirmation and Validation
+    register_message_blank_password_warning_message = register_page.blank_password_warning_message()
+    expect(register_message_blank_password_warning_message).to_have_text("Password must be between 4 and 20 characters!")
