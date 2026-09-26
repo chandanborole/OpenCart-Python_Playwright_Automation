@@ -20,6 +20,7 @@ class Config:
     invalid_register_telephone = "1234%%%(&*)67890"
     invalid_register_password = "QAAutomation@123"
     invalid_register_confirm_password = "QAAutomation@123"
+    blank_password = ""
     different_register_confirm_password = "QAjasdAutomation@123"
 
     # Invalid Login
