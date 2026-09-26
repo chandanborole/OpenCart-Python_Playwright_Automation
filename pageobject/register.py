@@ -22,9 +22,12 @@ class Register:
         self.register_checkbox_click_privacy_policy = self.page.locator("input[name='agree']")
         self.register_button_click_continue_button = self.page.locator("input[type='submit']")
         self.register_message_registration_success_message = self.page.locator("h1:has-text('Your Account Has Been Created!')")
+        self.register_message_password_warning_message = self.page.locator(".text-danger:has-text('Password must be between 4 and 20 characters!')")
         self.register_message_different_confirm_password_warning_message = self.page.locator(".text-danger:has-text('Password confirmation does not match password!')")
+        self.register_message_register_with_existing_details_warning_message = self.page.locator(".alert:has-text('Warning: E-Mail Address is already registered!')")
 
-    # Action methods label:has-text('Yes')
+    # Action methods
+
     def set_firstname(self , firstname):
         self.register_textbox_firstname.fill(firstname)
 
@@ -58,5 +61,11 @@ class Register:
     def registration_confirmation_success_message(self):
         return self.register_message_registration_success_message
 
+    def blank_password_warning_message(self):
+        return self.register_message_password_warning_message
+
     def different_confirm_password_warning_message(self):
         return self.register_message_different_confirm_password_warning_message
+
+    def register_with_existing_details_warning_message(self):
+        return self.register_message_register_with_existing_details_warning_message
