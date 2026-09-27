@@ -1,29 +1,15 @@
-from playwright.sync_api import Page
+from playwright.sync_api import Page , expect
 from OpenCart.pageobject.login import Login
 from OpenCart.config import Config
 
-# To verify valid login
-def test_valid_login(page:Page):
+def test_0009_validate_user_login_with_valid_input(page:Page):
 
-    page.goto("https://tutorialsninja.com/demo/")
+    """
+    To validate - User login with valid input
+    """
 
-    # Create Page Object
-    login_page = Login(page)
-    config_data = Config
-
-    # Navigate to login page
-    login_page.click_myaccount()
-    login_page.click_login_link()
-
-    # Fill User ID / Password
-    login_page.user_email_address(config_data.email)
-    login_page.user_password(config_data.password)
-    login_page.click_login_button()
-
-# To verify invalid login
-def test_invalid_login(page:Page):
-
-    page.goto("https://tutorialsninja.com/demo/")
+    # Browse URL
+    page.goto(Config.base_url)
 
     # Create Page Object
     login_page = Login(page)
@@ -34,6 +20,92 @@ def test_invalid_login(page:Page):
     login_page.click_login_link()
 
     # Fill User ID / Password
-    login_page.user_email_address(config_data.invalid_email)
-    login_page.user_password(config_data.invalid_password)
+    login_page.user_email_address(config_data.valid_register_email)
+    login_page.user_password(config_data.valid_register_password)
     login_page.click_login_button()
+
+    # Verify title after login
+    title_after_valid_login = login_page.verify_title_after_valid_login()
+    expect(title_after_valid_login).to_have_title("My Account")
+
+
+def test_0010_validate_user_login_with_invalid_input(page:Page):
+
+    """
+    To validate - User login with invalid input
+    Provide Invalid - email & password
+    """
+
+    # Browse URL
+    page.goto(Config.base_url)
+
+    # Create Page Object
+    login_page = Login(page)
+    config_data = Config
+
+    # Navigate to login page
+    login_page.click_myaccount()
+    login_page.click_login_link()
+
+    # Fill User ID / Password
+    login_page.user_email_address(config_data.invalid_login_username)
+    login_page.user_password(config_data.invalid_login_password)
+    login_page.click_login_button()
+
+    # Verify warning message
+    invalid_login_warning_message = login_page.invalid_login_warning_message()
+    expect(invalid_login_warning_message).to_have_text("Warning: No match for E-Mail Address and/or Password.")
+
+
+def test_0011_validate_warning_for_exceeded_login_attempts(page:Page):
+
+    """
+    To Validate - Warning: Your account has exceeded allowed number of login attempts. Please try again in 1 hour.
+    """
+
+    # Browse URL
+    page.goto(Config.base_url)
+
+    # Create Page Object
+    login_page = Login(page)
+    config_data = Config
+
+    # Navigate to login page
+    login_page.click_myaccount()
+    login_page.click_login_link()
+
+    # Fill User ID / Password
+    login_page.user_email_address(config_data.valid_register_email)
+    login_page.user_password(config_data.valid_register_password)
+    login_page.click_login_button()
+
+    # Verify title after login
+    exceeded_login_attempts_warning_message = login_page.exceeded_login_attempts_warning_message()
+    expect(exceeded_login_attempts_warning_message).to_have_title("My Account")
+
+
+def test_0012_validate_user_login_with_invalid_email_valid_password(page:Page):
+
+    """
+    To validate - User login with invalid input (Invalid email address and valid Password)
+    """
+
+    # Browse URL
+    page.goto(Config.base_url)
+
+    # Create Page Object
+    login_page = Login(page)
+    config_data = Config
+
+    # Navigate to login page
+    login_page.click_myaccount()
+    login_page.click_login_link()
+
+    # Fill User ID / Password
+    login_page.user_email_address(config_data.invalid_login_username)
+    login_page.user_password(config_data.invalid_login_password)
+    login_page.click_login_button()
+
+    # Verify warning message
+    validate_user_login_with_invalid_email_valid_password = login_page.login_warning_message_invalid_login()
+    expect(validate_user_login_with_invalid_email_valid_password).to_have_text("Warning: No match for E-Mail Address and/or Password.")
