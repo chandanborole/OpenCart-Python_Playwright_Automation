@@ -107,5 +107,83 @@ def test_0012_validate_user_login_with_invalid_email_valid_password(page:Page):
     login_page.click_login_button()
 
     # Verify warning message
-    validate_user_login_with_invalid_email_valid_password = login_page.login_warning_message_invalid_login()
+    validate_user_login_with_invalid_email_valid_password = login_page.invalid_login_warning_message()
     expect(validate_user_login_with_invalid_email_valid_password).to_have_text("Warning: No match for E-Mail Address and/or Password.")
+
+
+def test_0013_validate_user_login_with_valid_email_invalid_password(page:Page):
+
+    """
+    To validate - User login with invalid input (Valid email address and Invalid Password)
+    """
+
+    # Browse URL
+    page.goto(Config.base_url)
+
+    # Create Page Object
+    login_page = Login(page)
+    config_data = Config
+
+    # Navigate to login page
+    login_page.click_myaccount()
+    login_page.click_login_link()
+
+    # Fill User ID / Password
+    login_page.user_email_address(config_data.valid_register_email)
+    login_page.user_password(config_data.invalid_login_password)
+    login_page.click_login_button()
+
+    # Verify warning message
+    validate_user_login_with_invalid_email_valid_password = login_page.invalid_login_warning_message()
+    expect(validate_user_login_with_invalid_email_valid_password).to_have_text("Warning: No match for E-Mail Address and/or Password.")
+
+
+def test_0014_validate_user_login_without_any_credentials(page:Page):
+
+    """
+    To validate - User login without providing any credentials
+    """
+
+    # Browse URL
+    page.goto(Config.base_url)
+
+    # Create Page Object
+    login_page = Login(page)
+    config_data = Config
+
+    # Navigate to login page
+    login_page.click_myaccount()
+    login_page.click_login_link()
+
+    # Fill User ID / Password
+    login_page.user_email_address(config_data.invalid_blank_email_address)
+    login_page.user_password(config_data.invalid_blank_password)
+    login_page.click_login_button()
+
+    # Verify warning message
+    validate_user_login_with_invalid_email_valid_password = login_page.invalid_login_warning_message()
+    expect(validate_user_login_with_invalid_email_valid_password).to_have_text("Warning: No match for E-Mail Address and/or Password.")
+
+
+def test_0015_forgotten_password_hyperlink_should_clickable(page:Page):
+
+    """
+    To validate - Forgotten Password hyperlink should be clickable
+    """
+
+    # Browse URL
+    page.goto(Config.base_url)
+
+    # Create Page Object
+    login_page = Login(page)
+
+    # Navigate to login page
+    login_page.click_myaccount()
+    login_page.click_login_link()
+
+    # Click on Forgotten Password hyperlink
+    login_page.click_forgotten_password_hyperlink()
+
+    # Verify title after clicking on Forgotten Password hyperlink
+    title_forgot_your_password = login_page.verify_title_forgot_your_password()
+    expect(title_forgot_your_password).to_have_title("Forgot Your Password")
