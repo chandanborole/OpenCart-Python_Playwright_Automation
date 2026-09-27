@@ -191,7 +191,7 @@ def test_0006_new_user_registration_register_with_different_confirm_password(pag
     register_page.set_telephone(random_data.get_phone_number())
     password = random_data.get_password()
     register_page.set_password(password)
-    register_page.set_confirm_password(Config.different_register_confirm_password)
+    register_page.set_confirm_password(Config.invalid_different_register_confirm_password)
 
     # Select Newsletter Subscription as 'YES'
     register_page.click_subscribe_yes()
@@ -265,7 +265,7 @@ def test_0008_new_user_registration_with_password_and_confirm_password_field(pag
     register_page.set_lastname(ramdom_data.get_last_name())
     register_page.set_email(ramdom_data.get_email())
     register_page.set_telephone(ramdom_data.get_phone_number())
-    register_page.set_password(Config.blank_password)
+    register_page.set_password(Config.invalid_blank_password)
     register_page.set_confirm_password(Config.valid_register_confirm_password)
 
     # Select Newsletter Subscription as 'YES'
