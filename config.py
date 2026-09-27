@@ -20,12 +20,12 @@ class Config:
     invalid_register_telephone = "1234%%%(&*)67890"
     invalid_register_password = "QAAutomation@123"
     invalid_register_confirm_password = "QAAutomation@123"
-    blank_password = ""
-    different_register_confirm_password = "QAjasdAutomation@123"
+    invalid_blank_password = ""
+    invalid_different_register_confirm_password = "QAjasdAutomation@123"
 
     # Invalid Login
-    login_invalid_username = "qaauto@mation123@gmail.com"
-    login_invalid_password = "QRX@Xa6kQTDDSi123"
+    invalid_login_username = "qaauto@mation123@gmail.com"
+    invalid_login_password = "QRX@Xa6kQTDDSi123"
 
     # Edit Your Account Information Page inputs
     edit_firstname = "automationqa"
