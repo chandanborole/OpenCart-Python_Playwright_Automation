@@ -17,6 +17,9 @@ class Login:
         self.login_title_after_valid_login = self.page.locator("title:has-text('My Account')")
         self.login_warning_message_invalid_login = self.page.locator(".alert:has-text('Warning: No match for E-Mail Address and/or Password.')")
         self.login_warning_for_exceeded_login_attempts = self.page.locator(".alert:has-text('Warning: Your account has exceeded allowed number of login attempts. Please try again in 1 hour.')")
+        self.login_hyperlink_forgotten_password = self.page.locator(".form-group:has-text('Forgotten Password')")
+        self.login_title_forgot_your_password = self.page.locator("h1")
+
 
     #Action methods
 
@@ -43,3 +46,9 @@ class Login:
 
     def exceeded_login_attempts_warning_message(self):
         return self.login_warning_for_exceeded_login_attempts
+
+    def click_forgotten_password_hyperlink(self):
+        return self.login_hyperlink_forgotten_password.click()
+
+    def verify_title_forgot_your_password(self):
+        return self.login_title_forgot_your_password
