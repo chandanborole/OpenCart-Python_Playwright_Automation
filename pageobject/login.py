@@ -14,6 +14,9 @@ class Login:
         self.login_textbox_email_address = self.page.locator("#input-email")
         self.login_textbox_password = self.page.locator("#input-password")
         self.login_button_click_login = self.page.locator("input[type='submit']")
+        self.login_title_after_valid_login = self.page.locator("title:has-text('My Account')")
+        self.login_warning_message_invalid_login = self.page.locator(".alert:has-text('Warning: No match for E-Mail Address and/or Password.')")
+        self.login_warning_for_exceeded_login_attempts = self.page.locator(".alert:has-text('Warning: Your account has exceeded allowed number of login attempts. Please try again in 1 hour.')")
 
     #Action methods
 
@@ -31,3 +34,12 @@ class Login:
 
     def click_login_button(self):
         self.login_button_click_login.click()
+
+    def verify_title_after_valid_login(self):
+        return self.login_title_after_valid_login
+
+    def invalid_login_warning_message(self):
+        return self.login_warning_message_invalid_login
+
+    def exceeded_login_attempts_warning_message(self):
+        return self.login_warning_for_exceeded_login_attempts
