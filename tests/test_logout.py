@@ -9,7 +9,7 @@ def test_0016_validate_user_logout(page:Page):
     """
 
     # Browse URL
-    page.goto(Config.base_url)
+    page.goto(Config.valid_base_url)
 
     # Create Page Object
     logout_page = Logout(page)
