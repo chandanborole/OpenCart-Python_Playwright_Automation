@@ -20,7 +20,6 @@ class Login:
         self.login_hyperlink_forgotten_password = self.page.locator(".form-group:has-text('Forgotten Password')")
         self.login_title_forgot_your_password = self.page.locator("h1")
 
-
     #Action methods
 
     def click_myaccount(self):
@@ -39,7 +38,8 @@ class Login:
         self.login_button_click_login.click()
 
     def verify_title_after_valid_login(self):
-        return self.login_title_after_valid_login
+        # return self.login_title_after_valid_login
+        return self.page
 
     def invalid_login_warning_message(self):
         return self.login_warning_message_invalid_login
