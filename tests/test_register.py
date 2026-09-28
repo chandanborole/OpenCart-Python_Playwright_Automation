@@ -12,7 +12,7 @@ def test_0001_to_validate_application_url(page:Page):
     """
 
     # Browse URL
-    page.goto(Config.base_url)
+    page.goto(Config.valid_base_url)
 
 
 def test_0002_new_user_registration_valid_inputs(page:Page):
@@ -22,7 +22,7 @@ def test_0002_new_user_registration_valid_inputs(page:Page):
     """
 
     # Browse URL
-    page.goto(Config.base_url)
+    page.goto(Config.valid_base_url)
 
     # Create Page Object
     home_page = HomePage(page)
@@ -61,7 +61,7 @@ def test_0003_new_user_registration_invalid_inputs(page:Page):
     """
 
     # Browse URL
-    page.goto(Config.base_url)
+    page.goto(Config.valid_base_url)
 
     # Create Page Object
     home_page = HomePage(page)
@@ -95,7 +95,7 @@ def test_0004_new_user_registration_subscribe_newsletter_yes(page:Page):
     """
 
     # Browse URL
-    page.goto(Config.base_url)
+    page.goto(Config.valid_base_url)
 
     # Create Page Object
     home_page = HomePage(page)
@@ -134,7 +134,7 @@ def test_0005_new_user_registration_subscribe_newsletter_no(page:Page):
     """
 
     # Browse URL
-    page.goto(Config.base_url)
+    page.goto(Config.valid_base_url)
 
     # Create Page Object
     home_page = HomePage(page)
@@ -173,7 +173,7 @@ def test_0006_new_user_registration_register_with_different_confirm_password(pag
     """
 
     # Browse URL
-    page.goto(Config.base_url)
+    page.goto(Config.valid_base_url)
 
     # Create Page Object
     home_page = HomePage(page)
@@ -212,7 +212,7 @@ def test_0007_new_user_registration_register_with_existing_details(page:Page):
     """
 
     # Browse URL
-    page.goto(Config.base_url)
+    page.goto(Config.valid_base_url)
 
     # Create Page Object
     home_page = HomePage(page)
@@ -249,7 +249,7 @@ def test_0008_new_user_registration_with_password_and_confirm_password_field(pag
     """
 
     # Browse URL
-    page.goto(Config.base_url)
+    page.goto(Config.valid_base_url)
 
     # Create Page Object
     home_page = HomePage(page)
