@@ -9,7 +9,7 @@ def test_0009_validate_user_login_with_valid_input(page:Page):
     """
 
     # Browse URL
-    page.goto(Config.base_url)
+    page.goto(Config.valid_base_url)
 
     # Create Page Object
     login_page = Login(page)
@@ -37,7 +37,7 @@ def test_0010_validate_user_login_with_invalid_input(page:Page):
     """
 
     # Browse URL
-    page.goto(Config.base_url)
+    page.goto(Config.valid_base_url)
 
     # Create Page Object
     login_page = Login(page)
@@ -64,7 +64,7 @@ def test_0011_validate_warning_for_exceeded_login_attempts(page:Page):
     """
 
     # Browse URL
-    page.goto(Config.base_url)
+    page.goto(Config.valid_base_url)
 
     # Create Page Object
     login_page = Login(page)
@@ -91,7 +91,7 @@ def test_0012_validate_user_login_with_invalid_email_valid_password(page:Page):
     """
 
     # Browse URL
-    page.goto(Config.base_url)
+    page.goto(Config.valid_base_url)
 
     # Create Page Object
     login_page = Login(page)
@@ -118,7 +118,7 @@ def test_0013_validate_user_login_with_valid_email_invalid_password(page:Page):
     """
 
     # Browse URL
-    page.goto(Config.base_url)
+    page.goto(Config.valid_base_url)
 
     # Create Page Object
     login_page = Login(page)
@@ -145,7 +145,7 @@ def test_0014_validate_user_login_without_any_credentials(page:Page):
     """
 
     # Browse URL
-    page.goto(Config.base_url)
+    page.goto(Config.valid_base_url)
 
     # Create Page Object
     login_page = Login(page)
@@ -172,7 +172,7 @@ def test_0015_forgotten_password_hyperlink_should_clickable(page:Page):
     """
 
     # Browse URL
-    page.goto(Config.base_url)
+    page.goto(Config.valid_base_url)
 
     # Create Page Object
     login_page = Login(page)
