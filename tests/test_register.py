@@ -278,3 +278,47 @@ def test_0008_new_user_registration_with_password_and_confirm_password_field(pag
     # Verify Account Creation Confirmation and Validation
     register_message_blank_password_warning_message = register_page.blank_password_warning_message()
     expect(register_message_blank_password_warning_message).to_have_text("Password must be between 4 and 20 characters!")
+
+
+@pytest.mark.parametrize(
+    "email, expected_warning",
+    [
+        ("pythonplaywright", True),
+        ("pythonplaywright@", True),
+        ("_pythonplaywright@", True),
+        ("python_playwright@", True),
+        ("pythonplaywright@_", True),
+        ("pythonplaywright@gmail", True),
+        ("pythonplaywright@gmail$com", True),
+    ]
+)
+def test_0017_verify_register_account_using_invalid_emails(page, email, expected_warning):
+
+    """
+    To validate - Register account using invalid email address into the E-Mail field
+    """
+
+    # Browse URL
+    page.goto(Config.valid_base_url)
+
+    # Create Page Object
+    home_page = HomePage(page)
+    register_page = Register(page)
+    random_data = RandomDataGenerator()
+
+    # Navigate to registration page
+    home_page.click_myaccount()
+    home_page.click_register()
+
+    # Fill Registration Form
+    register_page.set_firstname(random_data.get_first_name())
+    register_page.set_lastname(random_data.get_last_name())
+    register_page.set_email(email)
+    register_page.set_telephone(random_data.get_phone_number())
+    password = random_data.get_password()
+    register_page.set_password(password)
+    register_page.set_confirm_password(password)
+
+    # Accept Privacy Policy and Click Continue Button
+    register_page.click_privacy_policy_checkbox()
+    register_page.click_continue_button()
