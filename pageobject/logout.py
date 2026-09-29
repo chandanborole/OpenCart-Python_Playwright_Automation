@@ -18,6 +18,9 @@ class Logout:
         self.logout_link_logout = self.page.locator(".dropdown-menu:has-text('Logout')")
         self.logout_button_continue_after_logout = self.page.locator(".pull-right:has-text('Continue')")
         self.logout_verify_title_after_logout = self.page.locator("title:has-text('My Account')")
+        self.logout_from_right_column = self.page.locator(".list-group-item:has-text('Logout')")
+        self.logout_button_continue_after_logout_from_right_column_options = self.page.locator(".btn-primary:has-text('Continue')")
+        self.logout_verify_title_after_logout_from_right_column_options = self.page.locator("title:has-text('Your Store')")
 
     #Action methods
 
@@ -46,4 +49,13 @@ class Logout:
         self.logout_button_continue_after_logout.click()
 
     def verify_title_after_logout(self):
+        return self.page
+
+    def click_logout_from_right_column(self):
+        self.logout_from_right_column.click()
+
+    def click_continue_after_logout_from_right_column_options(self):
+        self.logout_button_continue_after_logout_from_right_column_options.click()
+
+    def verify_title_after_logout_from_right_column_options(self):
         return self.page
