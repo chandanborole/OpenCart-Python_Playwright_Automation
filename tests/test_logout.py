@@ -40,7 +40,7 @@ def test_0016_validate_user_logout(page:Page):
     expect(title_after_logout).to_have_title("My Account")
 
 
-def test_0017_validate_user_logout_from_right_column_options(page:Page):
+def test_0022_validate_user_logout_from_right_column_options(page:Page):
 
     """
     To validate - User logout from Right Column options

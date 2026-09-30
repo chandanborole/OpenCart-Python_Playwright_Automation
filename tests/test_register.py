@@ -339,7 +339,7 @@ def test_0017_verify_register_account_using_invalid_emails(page, email, expected
         ("_python", True),
     ]
 )
-def test_0020_verify_register_account_using_invalid_firstname(page, firstname, expected_warning):
+def test_0018_verify_register_account_using_invalid_firstname(page, firstname, expected_warning):
 
     """
     To validate - New user registration - First Name field with invalid input
