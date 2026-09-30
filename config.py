@@ -3,7 +3,7 @@ class Config:
     # Input Parameters for testcases / pages
 
     # URL
-    base_url = "https://tutorialsninja.com/demo/"
+    valid_base_url = "https://tutorialsninja.com/demo/"
 
     # Register User Page valid inputs
     valid_register_first_name = "qa"
@@ -29,17 +29,17 @@ class Config:
     invalid_login_password = "QRX@Xa6kQTDDSi123"
 
     # Edit Your Account Information Page inputs
-    edit_firstname = "automationqa"
-    edit_lastname = "pythonplaywright"
-    edit_telephone = "0987654321"
+    valid_edit_firstname = "automationqa"
+    valid_edit_lastname = "pythonplaywright"
+    valid_edit_telephone = "0987654321"
 
     # Forgot Password Page
-    email_get_by_label = "qaautomation@gmail.com"
+    valid_email_get_by_label = "qaautomation@gmail.com"
 
     # Modify Your Address Book Entries inputs
-    modify_firstname = "python"
-    modify_lastname = "automation"
-    modify_address = "pycharm"
-    modify_city = "pytest"
-    modify_country = "India"
-    modify_region = "Maharashtra"
+    valid_modify_firstname = "python"
+    valid_modify_lastname = "automation"
+    valid_modify_address = "pycharm"
+    valid_modify_city = "pytest"
+    valid_modify_country = "India"
+    valid_modify_region = "Maharashtra"
