@@ -1,0 +1,474 @@
+import pytest
+from playwright.sync_api import Page , expect
+from OpenCart.pageobject.register import Register
+from OpenCart.pageobject.homepage import HomePage
+from OpenCart.utilities.random_data_util import RandomDataGenerator
+from OpenCart.config import Config
+
+def test_0001_to_validate_application_url(page:Page):
+
+    """
+    To validate - Application URL
+    """
+
+    # Browse URL
+    page.goto(Config.valid_base_url)
+
+
+def test_0002_new_user_registration_valid_inputs(page:Page):
+
+    """
+    To validate - New user registration with valid input
+    """
+
+    # Browse URL
+    page.goto(Config.valid_base_url)
+
+    # Create Page Object
+    home_page = HomePage(page)
+    register_page = Register(page)
+    random_data = RandomDataGenerator()
+
+    # Navigate to registration page
+    home_page.click_myaccount()
+    home_page.click_register()
+
+    # Fill Registration Form
+    register_page.set_firstname(random_data.get_first_name())
+    register_page.set_lastname(random_data.get_last_name())
+    register_page.set_email(random_data.get_email())
+    register_page.set_telephone(random_data.get_phone_number())
+    password = random_data.get_password()
+    register_page.set_password(password)
+    register_page.set_confirm_password(password)
+
+    # Accept Privacy Policy and Click Continue Button
+    register_page.click_privacy_policy_checkbox()
+    register_page.click_continue_button()
+
+    # Verify Account Creation Confirmation and Validation
+    registration_success_message = register_page.registration_confirmation_success_message()
+    expect(registration_success_message).to_have_text("Your Account Has Been Created!")
+    page.wait_for_timeout(5000)
+
+
+def test_0003_new_user_registration_invalid_inputs(page:Page):
+
+    """
+    To validate - New user registration with invalid input
+    IMP - Currently there is no validation on UI page - SKIP
+    """
+
+    # Browse URL
+    page.goto(Config.valid_base_url)
+
+    # Create Page Object
+    home_page = HomePage(page)
+    register_page = Register(page)
+
+    # Navigate to registration page
+    home_page.click_myaccount()
+    home_page.click_register()
+
+    # Fill Registration Form
+    register_page.set_firstname(Config.invalid_register_first_name)
+    register_page.set_lastname(Config.invalid_register_last_name)
+    register_page.set_email(Config.invalid_register_email)
+    register_page.set_telephone(Config.invalid_register_telephone)
+    register_page.set_password(Config.invalid_register_password)
+    register_page.set_confirm_password(Config.invalid_register_confirm_password)
+
+    # Accept Privacy Policy and Submit
+    register_page.click_privacy_policy_checkbox()
+    register_page.click_continue_button()
+
+    # Verify Account Creation Confirmation and Validation
+    registration_success_message = register_page.registration_confirmation_success_message()
+    expect(registration_success_message).to_have_text("Currently there is no validation on UI page - SKIP")
+
+
+def test_0004_new_user_registration_subscribe_newsletter_yes(page:Page):
+
+    """
+    To Validate - Register an Account when 'YES' option is selected for Subscribe Newsletter field
+    """
+
+    # Browse URL
+    page.goto(Config.valid_base_url)
+
+    # Create Page Object
+    home_page = HomePage(page)
+    register_page = Register(page)
+    random_data = RandomDataGenerator()
+
+    # Navigate to registration page
+    home_page.click_myaccount()
+    home_page.click_register()
+
+    # Fill Registration Form
+    register_page.set_firstname(random_data.get_first_name())
+    register_page.set_lastname(random_data.get_last_name())
+    register_page.set_email(random_data.get_email())
+    register_page.set_telephone(random_data.get_phone_number())
+    password = random_data.get_password()
+    register_page.set_password(password)
+    register_page.set_confirm_password(password)
+
+    # Select Newsletter Subscription as 'YES'
+    register_page.click_subscribe_yes()
+
+    # Accept Privacy Policy and Submit
+    register_page.click_privacy_policy_checkbox()
+    register_page.click_continue_button()
+
+    # Verify Account Creation Confirmation and Validation
+    registration_success_message = register_page.registration_confirmation_success_message()
+    expect(registration_success_message).to_have_text("Your Account Has Been Created!")
+
+
+def test_0005_new_user_registration_subscribe_newsletter_no(page:Page):
+
+    """
+    To Validate - Register an Account when 'NO' option is selected for Subscribe Newsletter field
+    """
+
+    # Browse URL
+    page.goto(Config.valid_base_url)
+
+    # Create Page Object
+    home_page = HomePage(page)
+    register_page = Register(page)
+    random_data = RandomDataGenerator()
+
+    # Navigate to registration page
+    home_page.click_myaccount()
+    home_page.click_register()
+
+    # Fill Registration Form
+    register_page.set_firstname(random_data.get_first_name())
+    register_page.set_lastname(random_data.get_last_name())
+    register_page.set_email(random_data.get_email())
+    register_page.set_telephone(random_data.get_phone_number())
+    password = random_data.get_password()
+    register_page.set_password(password)
+    register_page.set_confirm_password(password)
+
+    # Select Newsletter Subscription as 'NO'
+    register_page.click_subscribe_no()
+
+    # Accept Privacy Policy and Submit
+    register_page.click_privacy_policy_checkbox()
+    register_page.click_continue_button()
+
+    # Verify Account Creation Confirmation and Validation
+    registration_success_message = register_page.registration_confirmation_success_message()
+    expect(registration_success_message).to_have_text("Your Account Has Been Created!")
+
+
+def test_0006_new_user_registration_register_with_different_confirm_password(page:Page):
+
+    """
+    To Validate - Register account by entering different passwords into 'Password' and 'Password Confirm' fields
+    """
+
+    # Browse URL
+    page.goto(Config.valid_base_url)
+
+    # Create Page Object
+    home_page = HomePage(page)
+    register_page = Register(page)
+    random_data = RandomDataGenerator()
+
+    # Navigate to registration page
+    home_page.click_myaccount()
+    home_page.click_register()
+
+    # Fill Registration Form
+    register_page.set_firstname(random_data.get_first_name())
+    register_page.set_lastname(random_data.get_last_name())
+    register_page.set_email(random_data.get_email())
+    register_page.set_telephone(random_data.get_phone_number())
+    password = random_data.get_password()
+    register_page.set_password(password)
+    register_page.set_confirm_password(Config.invalid_different_register_confirm_password)
+
+    # Select Newsletter Subscription as 'YES'
+    register_page.click_subscribe_yes()
+
+    # Accept Privacy Policy and Submit
+    register_page.click_privacy_policy_checkbox()
+    register_page.click_continue_button()
+
+    # Verify warning message for confirm password mismatch
+    different_confirm_password_warning_message = register_page.different_confirm_password_warning_message()
+    expect(different_confirm_password_warning_message).to_have_text("Password confirmation does not match password!")
+
+
+def test_0007_new_user_registration_register_with_existing_details(page:Page):
+
+    """
+    To Validate - Register account using existing account details (ex - existing first name , last name , email address etc)
+    """
+
+    # Browse URL
+    page.goto(Config.valid_base_url)
+
+    # Create Page Object
+    home_page = HomePage(page)
+    register_page = Register(page)
+
+    # Navigate to registration page
+    home_page.click_register()
+    home_page.click_myaccount()
+
+    # Fill Registration Form
+    register_page.set_firstname(Config.valid_register_first_name)
+    register_page.set_lastname(Config.valid_register_last_name)
+    register_page.set_email(Config.valid_register_email)
+    register_page.set_telephone(Config.valid_register_telephone)
+    register_page.set_password(Config.valid_register_password)
+    register_page.set_confirm_password(Config.valid_register_confirm_password)
+
+    # Select Newsletter Subscription as 'YES'
+    register_page.click_subscribe_yes()
+
+    # Accept Privacy Policy and Submit
+    register_page.click_privacy_policy_checkbox()
+    register_page.click_continue_button()
+
+    # Verify Account Creation Confirmation and Validation
+    register_with_existing_details_warning_message = register_page.register_with_existing_details_warning_message()
+    expect(register_with_existing_details_warning_message).to_have_text("Warning: E-Mail Address is already registered!")
+
+
+def test_0008_new_user_registration_with_password_and_confirm_password_field(page:Page):
+
+    """
+    To validate - Register account by not filling 'Password' field and by filling 'Confirm Password' field
+    """
+
+    # Browse URL
+    page.goto(Config.valid_base_url)
+
+    # Create Page Object
+    home_page = HomePage(page)
+    register_page = Register(page)
+    ramdom_data = RandomDataGenerator()
+
+    # Navigate to registration page
+    home_page.click_register()
+    home_page.click_myaccount()
+
+    # Fill Registration Form
+    register_page.set_firstname(ramdom_data.get_first_name())
+    register_page.set_lastname(ramdom_data.get_last_name())
+    register_page.set_email(ramdom_data.get_email())
+    register_page.set_telephone(ramdom_data.get_phone_number())
+    register_page.set_password(Config.invalid_blank_password)
+    register_page.set_confirm_password(Config.valid_register_confirm_password)
+
+    # Select Newsletter Subscription as 'YES'
+    register_page.click_subscribe_yes()
+
+    # Accept Privacy Policy and Submit
+    register_page.click_privacy_policy_checkbox()
+    register_page.click_continue_button()
+
+    # Verify Account Creation Confirmation and Validation
+    register_message_blank_password_warning_message = register_page.blank_password_warning_message()
+    expect(register_message_blank_password_warning_message).to_have_text("Password must be between 4 and 20 characters!")
+
+
+@pytest.mark.parametrize(
+    "email, expected_warning",
+    [
+        ("pythonplaywright", True),
+        ("pythonplaywright@", True),
+        ("_pythonplaywright@", True),
+        ("python_playwright@", True),
+        ("pythonplaywright@_", True),
+        ("pythonplaywright@gmail", True),
+        ("pythonplaywright@gmail$com", True),
+    ]
+)
+def test_0017_verify_register_account_using_invalid_emails(page, email, expected_warning):
+
+    """
+    To validate - Register account using invalid email address into the E-Mail field
+    """
+
+    # Browse URL
+    page.goto(Config.valid_base_url)
+
+    # Create Page Object
+    home_page = HomePage(page)
+    register_page = Register(page)
+    random_data = RandomDataGenerator()
+
+    # Navigate to registration page
+    home_page.click_myaccount()
+    home_page.click_register()
+
+    # Fill Registration Form
+    register_page.set_firstname(random_data.get_first_name())
+    register_page.set_lastname(random_data.get_last_name())
+    register_page.set_email(email)
+    register_page.set_telephone(random_data.get_phone_number())
+    password = random_data.get_password()
+    register_page.set_password(password)
+    register_page.set_confirm_password(password)
+
+    # Accept Privacy Policy and Click Continue Button
+    register_page.click_privacy_policy_checkbox()
+    register_page.click_continue_button()
+
+
+@pytest.mark.parametrize(
+    "firstname, expected_warning",
+    [
+        ("qa", True),
+        ("qa@@", True),
+        ("@ws", True),
+        ("324", True),
+        ("@#$", True),
+        ("pythonplaywrightpytestautomation", True),
+        ("''", True),
+        ("", True),
+        ("python@123", True),
+        ("python_", True),
+        ("_python", True),
+    ]
+)
+def test_0018_verify_register_account_using_invalid_firstname(page, firstname, expected_warning):
+
+    """
+    To validate - New user registration - First Name field with invalid input
+    """
+
+    # Browse URL
+    page.goto(Config.valid_base_url)
+
+    # Create Page Object
+    home_page = HomePage(page)
+    register_page = Register(page)
+    random_data = RandomDataGenerator()
+
+    # Navigate to registration page
+    home_page.click_myaccount()
+    home_page.click_register()
+
+    # Fill Registration Form
+    register_page.set_firstname(firstname)
+    register_page.set_lastname(random_data.get_last_name())
+    register_page.set_email(random_data.get_email())
+    register_page.set_telephone(random_data.get_phone_number())
+    password = random_data.get_password()
+    register_page.set_password(password)
+    register_page.set_confirm_password(password)
+
+    # Accept Privacy Policy and Click Continue Button
+    register_page.click_privacy_policy_checkbox()
+    register_page.click_continue_button()
+
+
+@pytest.mark.parametrize(
+    "lastname, expected_warning",
+    [
+        ("qa", True),
+        ("qa@@", True),
+        ("@ws", True),
+        ("324", True),
+        ("@#$", True),
+        ("pythonplaywrightpytestautomation", True),
+        ("''", True),
+        ("", True),
+        ("python@123", True),
+        ("python_", True),
+        ("_python", True),
+    ]
+)
+def test_0019_verify_register_account_using_invalid_lastname(page, lastname, expected_warning):
+
+    """
+    To validate - New user registration - Last Name field with invalid input
+    """
+
+    # Browse URL
+    page.goto(Config.valid_base_url)
+
+    # Create Page Object
+    home_page = HomePage(page)
+    register_page = Register(page)
+    random_data = RandomDataGenerator()
+
+    # Navigate to registration page
+    home_page.click_myaccount()
+    home_page.click_register()
+
+    # Fill Registration Form
+    register_page.set_firstname(random_data.get_first_name())
+    register_page.set_lastname(lastname)
+    register_page.set_email(random_data.get_email())
+    register_page.set_telephone(random_data.get_phone_number())
+    password = random_data.get_password()
+    register_page.set_password(password)
+    register_page.set_confirm_password(password)
+
+    # Accept Privacy Policy and Click Continue Button
+    register_page.click_privacy_policy_checkbox()
+    register_page.click_continue_button()
+
+
+@pytest.mark.parametrize(
+    "telephone, expected_warning",
+    [
+        ("qa", True),
+        ("qa@@", True),
+        ("@ws", True),
+        ("324", True),
+        ("@#$", True),
+        ("pythonplaywrightpytestautomation", True),
+        ("''", True),
+        ("", True),
+        ("python@123", True),
+        ("python_", True),
+        ("_python", True),
+        ("python", True),
+        ("python45", True),
+        ("pythonqaQA", True),
+        ("12345678900", True),
+        ("123456789*", True),
+        ("", True),
+        ('', True),
+    ]
+)
+def test_0021_verify_register_account_using_invalid_telephone(page, telephone, expected_warning):
+
+    """
+    To validate - New user registration - telephone field with invalid input
+    """
+
+    # Browse URL
+    page.goto(Config.valid_base_url)
+
+    # Create Page Object
+    home_page = HomePage(page)
+    register_page = Register(page)
+    random_data = RandomDataGenerator()
+
+    # Navigate to registration page
+    home_page.click_myaccount()
+    home_page.click_register()
+
+    # Fill Registration Form
+    register_page.set_firstname(random_data.get_first_name())
+    register_page.set_lastname(random_data.get_password())
+    register_page.set_email(random_data.get_email())
+    register_page.set_telephone(telephone)
+    password = random_data.get_password()
+    register_page.set_password(password)
+    register_page.set_confirm_password(password)
+
+    # Accept Privacy Policy and Click Continue Button
+    register_page.click_privacy_policy_checkbox()
+    register_page.click_continue_button()
