@@ -3,7 +3,7 @@ from OpenCart.pageobject.login import Login
 from OpenCart.pageobject.add_to_cart import AddToCart
 from OpenCart.config import Config
 
-def test_0009_validate_adding_the_product_to_cart_from_product_display_page(page:Page):
+def test_0020_validate_adding_the_product_to_cart_from_product_display_page(page:Page):
 
     """
     To validate - adding the product to Cart from 'Product Display' Page
