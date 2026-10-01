@@ -589,7 +589,7 @@ def test_0024_verify_register_account_newsletter_subscribe_radio_button_yes(page
     page.wait_for_timeout(5000)
 
 
-def test_0025_verify_register_account_mandatory_fields_with_only_spaces_as_a_input(page:Page):
+def test_0025_verify_register_account_mandatory_fields_with_only_spaces_as_an_input(page:Page):
 
     """
     To validate - Register account page Mandatory fields with only spaces as an input
