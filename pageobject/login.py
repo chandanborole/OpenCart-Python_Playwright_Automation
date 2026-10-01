@@ -38,7 +38,6 @@ class Login:
         self.login_button_click_login.click()
 
     def verify_title_after_valid_login(self):
-        # return self.login_title_after_valid_login
         return self.page
 
     def invalid_login_warning_message(self):
