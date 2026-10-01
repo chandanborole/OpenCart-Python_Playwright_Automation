@@ -25,6 +25,7 @@ class Register:
         self.register_message_password_warning_message = self.page.locator(".text-danger:has-text('Password must be between 4 and 20 characters!')")
         self.register_message_different_confirm_password_warning_message = self.page.locator(".text-danger:has-text('Password confirmation does not match password!')")
         self.register_message_register_with_existing_details_warning_message = self.page.locator(".alert:has-text('Warning: E-Mail Address is already registered!')")
+        self.register_message_register_agree_to_the_privacy_policy_warning_message = self.page.locator(".alert-danger:has-text('Warning: You must agree to the Privacy Policy!')")
 
     # Action methods
 
@@ -69,3 +70,6 @@ class Register:
 
     def register_with_existing_details_warning_message(self):
         return self.register_message_register_with_existing_details_warning_message
+
+    def register_agree_to_the_privacy_policy_warning_message(self):
+        return self.register_message_register_agree_to_the_privacy_policy_warning_message
