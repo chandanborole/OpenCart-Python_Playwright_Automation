@@ -5,7 +5,7 @@ from OpenCart.pageobject.homepage import HomePage
 from OpenCart.utilities.random_data_util import RandomDataGenerator
 from OpenCart.config import Config
 
-def test_0001_to_validate_application_url(page:Page):
+def test_0001_verify_application_url(page:Page):
 
     """
     To validate - Application URL
@@ -15,7 +15,7 @@ def test_0001_to_validate_application_url(page:Page):
     page.goto(Config.valid_base_url)
 
 
-def test_0002_new_user_registration_valid_inputs(page:Page):
+def test_0002_verify_new_user_registration_valid_inputs(page:Page):
 
     """
     To validate - New user registration with valid input
@@ -52,7 +52,7 @@ def test_0002_new_user_registration_valid_inputs(page:Page):
     page.wait_for_timeout(5000)
 
 
-def test_0003_new_user_registration_invalid_inputs(page:Page):
+def test_0003_verify_new_user_registration_invalid_inputs(page:Page):
 
     """
     To validate - New user registration with invalid input
@@ -87,7 +87,7 @@ def test_0003_new_user_registration_invalid_inputs(page:Page):
     expect(registration_success_message).to_have_text("Currently there is no validation on UI page - SKIP")
 
 
-def test_0004_new_user_registration_subscribe_newsletter_yes(page:Page):
+def test_0004_verify_new_user_registration_subscribe_newsletter_yes(page:Page):
 
     """
     To Validate - Register an Account when 'YES' option is selected for Subscribe Newsletter field
@@ -126,7 +126,7 @@ def test_0004_new_user_registration_subscribe_newsletter_yes(page:Page):
     expect(registration_success_message).to_have_text("Your Account Has Been Created!")
 
 
-def test_0005_new_user_registration_subscribe_newsletter_no(page:Page):
+def test_0005_verify_new_user_registration_subscribe_newsletter_no(page:Page):
 
     """
     To Validate - Register an Account when 'NO' option is selected for Subscribe Newsletter field
@@ -165,7 +165,7 @@ def test_0005_new_user_registration_subscribe_newsletter_no(page:Page):
     expect(registration_success_message).to_have_text("Your Account Has Been Created!")
 
 
-def test_0006_new_user_registration_register_with_different_confirm_password(page:Page):
+def test_0006_verify_new_user_registration_register_with_different_confirm_password(page:Page):
 
     """
     To Validate - Register account by entering different passwords into 'Password' and 'Password Confirm' fields
@@ -204,7 +204,7 @@ def test_0006_new_user_registration_register_with_different_confirm_password(pag
     expect(different_confirm_password_warning_message).to_have_text("Password confirmation does not match password!")
 
 
-def test_0007_new_user_registration_register_with_existing_details(page:Page):
+def test_0007_verify_new_user_registration_register_with_existing_details(page:Page):
 
     """
     To Validate - Register account using existing account details (ex - existing first name , last name , email address etc)
@@ -241,7 +241,7 @@ def test_0007_new_user_registration_register_with_existing_details(page:Page):
     expect(register_with_existing_details_warning_message).to_have_text("Warning: E-Mail Address is already registered!")
 
 
-def test_0008_new_user_registration_with_password_and_confirm_password_field(page:Page):
+def test_0008_verify_new_user_registration_with_password_and_confirm_password_field(page:Page):
 
     """
     To validate - Register account by not filling 'Password' field and by filling 'Confirm Password' field
@@ -592,7 +592,7 @@ def test_0024_verify_register_account_newsletter_subscribe_radio_button_yes(page
 def test_0025_verify_register_account_mandatory_fields_with_only_spaces_as_a_input(page:Page):
 
     """
-    To validate - Register account page Mandatory fields with only spaces as a input
+    To validate - Register account page Mandatory fields with only spaces as an input
     """
 
     # Browse URL
@@ -601,7 +601,6 @@ def test_0025_verify_register_account_mandatory_fields_with_only_spaces_as_a_inp
     # Create Page Object
     home_page = HomePage(page)
     register_page = Register(page)
-    random_data = RandomDataGenerator()
 
     # Navigate to registration page
     home_page.click_myaccount()
